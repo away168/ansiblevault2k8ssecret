@@ -14,11 +14,11 @@ spec:
         command: ["scripts/saveSecret.sh",  "/tmp/encryptedfile", "/tmp/passwordfile", "myansiblesecret"]
         volumeMounts:
         - name: encryptedfile
-          mountPath: /tmp
+          mountPath: /tmp/encryptedfile
           subPath: encryptedfile
           readOnly: true
         - name: passwordfile
-          mountPath: /tmp
+          mountPath: /tmp/passwordfile
           subPath: passwordfile
           readOnly: true
       restartPolicy: Never
