@@ -15,7 +15,9 @@ RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/v${KUBECT
     && ln -sv /usr/local/bin/kubectl /usr/local/bin/k
 
 COPY scripts/saveSecret.sh /home/ubuntu/scripts/
+RUN chmod 755 /home/ubuntu/scripts/saveSecret.sh
 
 WORKDIR /home/ubuntu
 
+ENTRYPOINT tail -f > /dev/null
 # ENTRYPOINT saveSecret.sh

@@ -11,7 +11,8 @@ spec:
         # First argument is the file to decrypt
         # Second argument is the password file
         # Third argument is the name of the secret to create
-        command: ["scripts/saveSecret.sh",  "/tmp/encryptedfile", "/tmp/passwordfile", "myansiblesecret"]
+        # Fourth argument is the namespace
+        command: ["scripts/saveSecret.sh",  "/tmp/encryptedfile", "/tmp/passwordfile", "myansiblesecret", "dev"]
         volumeMounts:
         - name: encryptedfile
           mountPath: /tmp/encryptedfile
@@ -21,7 +22,7 @@ spec:
           mountPath: /tmp/passwordfile
           subPath: passwordfile
           readOnly: true
-        serviceAccount: ansiblehelper
+      serviceAccountName: ansiblehelper
       restartPolicy: Never
       volumes:
       - name: encryptedfile
