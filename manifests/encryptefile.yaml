@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: encryptedfilesecret
+type: Opaque
+data:
+  encryptedfile: {#toBase64($encryptedfileartifact)}
