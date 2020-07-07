@@ -4,4 +4,4 @@ metadata:
   name: encryptedfilesecret
 type: Opaque
 data:
-  encryptedfile: {#toBase64($encryptedfileartifact)}
+  encryptedfile: ${#toBase64(encryptedfileartifact)}
