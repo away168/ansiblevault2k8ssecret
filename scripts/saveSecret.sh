@@ -6,6 +6,8 @@
 # Second argument is the password file
 # Third argument is the name of the secret to create
 
-ansible-vault decrypt ansible-vault decrypt $1 --vault-password-file $2 --output /tmp/file
+set -x
 
-kubectl create secret generic $3 --from-file=$1:/tmp/file
+ansible-vault decrypt $1 --vault-password-file $2 --output /tmp/file
+
+kubectl create secret generic $3 --from-file=/tmp/file

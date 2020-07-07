@@ -21,6 +21,7 @@ spec:
           mountPath: /tmp/passwordfile
           subPath: passwordfile
           readOnly: true
+        serviceAccount: ansiblehelper
       restartPolicy: Never
       volumes:
       - name: encryptedfile
@@ -29,4 +30,4 @@ spec:
       - name: passwordfile
         secret: 
           secretName: passwordfilesecret
-  backoffLimit: 4
+  backoffLimit: 1
