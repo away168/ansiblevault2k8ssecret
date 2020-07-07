@@ -10,8 +10,26 @@ Run the container as a job in k8s, with the prerequisite files mounted
 
 We also need to setup a ServiceAccount with permissions to create Secrets.
 
+
+## Usage
+Run the manifests/job.yaml as an example of a spinnaker run job stage. 
+Specify the arguments either based on SpEL (pipeline expressions) such as k8s secret name and namespace.
+
+First, you will need to create a secret that contains the password for ansible vault. This secret will get mounted as a password file for the `ansible-vault` cli.
+
+Next, you will need to reference the encrypted file also as a k8s secret.  This can be created from an artifact file. 
+
+Apply the manifests/ansiblehelper.yaml which creates a role (to allow for creation of secrets), a service account, ansiblehelper, and a clusterrolebinding to bind the service account and role.
+
+The service account, ansiblehelper, will be used by the job for it to create secrets.
+
+## Considerations
+Proper RBAC should be configured for the Spinnaker Account - such that only certain roles can have access to create secrets using the service account. 
+
 ---
-commands
+
+## Misc
+
 `ansible-vault encrypt --vault-password-file [passwd] [file to encrypt] --output [encrypted filename]`
 `ansible-vault decrypt --vault-password-file [passwd] [file to decrypt] --output [decrypted filename]`
 
